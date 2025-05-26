@@ -1,0 +1,417 @@
+import java.util.Scanner;
+
+class InvalidAgeException extends Exception {
+    public InvalidAgeException(String message) {
+        super(message);
+    }
+}
+
+public class CustomExceptionDemo {
+    public static void checkAge(int age) throws InvalidAgeException {
+        if (age < 18) {
+            throw new InvalidAgeException("Age must be at least 18.");
+        } else {
+            System.out.println("Age is valid: " + age);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt();
+
+        try {
+            checkAge(age);
+        } catch (InvalidAgeException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        }
+        scanner.close();
+    }
+}
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class FileWritingDemo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a string to write to file: ");
+        String input = scanner.nextLine();
+
+        try (FileWriter writer = new FileWriter("output.txt")) {
+            writer.write(input);
+            System.out.println("Data written to output.txt successfully.");
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
+
+        scanner.close();
+    }
+}
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class FileReadingDemo {
+    public static void main(String[] args) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("output.txt"))) {
+            String line;
+            System.out.println("Contents of output.txt:");
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+    }
+}
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ArrayListDemo {
+    public static void main(String[] args) {
+        ArrayList<String> names = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        String input;
+
+        System.out.println("Enter student names (type 'exit' to stop):");
+        while (!(input = scanner.nextLine()).equalsIgnoreCase("exit")) {
+            names.add(input);
+        }
+
+        System.out.println("Student Names:");
+        for (String name : names) {
+            System.out.println(name);
+        }
+        scanner.close();
+    }
+}
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class HashMapDemo {
+    public static void main(String[] args) {
+        HashMap<Integer, String> studentMap = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
+        String input;
+
+        System.out.println("Add student ID and name (type 'done' to stop):");
+
+        while (true) {
+            System.out.print("Enter ID: ");
+            input = scanner.nextLine();
+            if (input.equalsIgnoreCase("done")) break;
+
+            try {
+                int id = Integer.parseInt(input);
+                System.out.print("Enter name: ");
+                String name = scanner.nextLine();
+                studentMap.put(id, name);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid ID. Please enter a number.");
+            }
+        }
+
+        System.out.print("Enter ID to retrieve name: ");
+        int searchId = scanner.nextInt();
+        String result = studentMap.get(searchId);
+        if (result != null) {
+            System.out.println("Name for ID " + searchId + ": " + result);
+        } else {
+            System.out.println("No entry found for ID " + searchId);
+        }
+        scanner.close();
+    }
+}
+class MyThread extends Thread {
+    private String message;
+
+    MyThread(String message) {
+        this.message = message;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println(message + " - " + i);
+            try { Thread.sleep(200); } catch (InterruptedException ignored) {}
+        }
+    }
+}
+
+public class ThreadDemo {
+    public static void main(String[] args) {
+        Thread t1 = new MyThread("Thread 1");
+        Thread t2 = new MyThread("Thread 2");
+
+        t1.start();
+        t2.start();
+    }
+}
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class LambdaSortDemo {
+    public static void main(String[] args) {
+        List<String> fruits = new ArrayList<>();
+        fruits.add("Banana");
+        fruits.add("Apple");
+        fruits.add("Orange");
+        fruits.add("Mango");
+
+        Collections.sort(fruits, (a, b) -> a.compareToIgnoreCase(b));
+
+        System.out.println("Sorted fruits:");
+        fruits.forEach(System.out::println);
+    }
+}
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class StreamFilterDemo {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(5, 12, 3, 20, 8, 7);
+
+        List<Integer> evens = numbers.stream()
+                .filter(n -> n % 2 == 0)
+                .collect(Collectors.toList());
+
+        System.out.println("Even numbers: " + evens);
+    }
+}
+import java.util.List;
+
+public class RecordDemo {
+    public record Person(String name, int age) {}
+
+    public static void main(String[] args) {
+        List<Person> people = List.of(
+            new Person("Alice", 25),
+            new Person("Bob", 17),
+            new Person("Charlie", 30)
+        );
+
+        people.forEach(System.out::println);
+
+        System.out.println("People aged 18 or older:");
+        people.stream()
+            .filter(p -> p.age() >= 18)
+            .forEach(System.out::println);
+    }
+}
+public class PatternMatchingSwitchDemo {
+    public static void checkType(Object obj) {
+        String result = switch (obj) {
+            case Integer i -> "Integer with value " + i;
+            case String s -> "String with value \"" + s + "\"";
+            case Double d -> "Double with value " + d;
+            case null -> "Null value";
+            default -> "Unknown type: " + obj.getClass().getName();
+        };
+        System.out.println(result);
+    }
+
+    public static void main(String[] args) {
+        checkType(10);
+        checkType("Hello");
+        checkType(3.14);
+        checkType(null);
+        checkType(new Object());
+    }
+}
+import java.sql.*;
+
+public class JdbcSelectDemo {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/your_db_name";
+        String user = "your_user";
+        String password = "your_password";
+
+        String query = "SELECT * FROM students";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); // Load driver
+            Connection con = DriverManager.getConnection(url, user, password);
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                System.out.println("ID: " + rs.getInt("id") + ", Name: " + rs.getString("name"));
+            }
+
+            rs.close();
+            stmt.close();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+import java.sql.*;
+
+public class StudentDAO {
+    private Connection con;
+
+    public StudentDAO(Connection con) {
+        this.con = con;
+    }
+
+    public void insertStudent(int id, String name) throws SQLException {
+        String sql = "INSERT INTO students (id, name) VALUES (?, ?)";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.setString(2, name);
+            ps.executeUpdate();
+        }
+    }
+
+    public void updateStudentName(int id, String newName) throws SQLException {
+        String sql = "UPDATE students SET name = ? WHERE id = ?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, newName);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        }
+    }
+}
+import java.sql.*;
+
+public class TransactionDemo {
+    private Connection con;
+
+    public TransactionDemo(Connection con) {
+        this.con = con;
+    }
+
+    public void transfer(int fromAccount, int toAccount, double amount) throws SQLException {
+        try {
+            con.setAutoCommit(false);
+
+            PreparedStatement debit = con.prepareStatement(
+                    "UPDATE accounts SET balance = balance - ? WHERE id = ?");
+            debit.setDouble(1, amount);
+            debit.setInt(2, fromAccount);
+            debit.executeUpdate();
+
+            PreparedStatement credit = con.prepareStatement(
+                    "UPDATE accounts SET balance = balance + ? WHERE id = ?");
+            credit.setDouble(1, amount);
+            credit.setInt(2, toAccount);
+            credit.executeUpdate();
+
+            con.commit();
+            System.out.println("Transfer successful.");
+
+        } catch (SQLException e) {
+            con.rollback();
+            System.out.println("Transfer failed. Rolled back.");
+            throw e;
+        } finally {
+            con.setAutoCommit(true);
+        }
+    }
+}
+module com.utils {
+    exports com.utils;
+}
+import java.io.*;
+import java.net.*;
+
+public class TCPServer {
+    public static void main(String[] args) throws IOException {
+        ServerSocket server = new ServerSocket(1234);
+        System.out.println("Server listening...");
+        Socket client = server.accept();
+        System.out.println("Client connected");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+        PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+
+        String line;
+        while ((line = in.readLine()) != null) {
+            System.out.println("Client: " + line);
+            out.println("Echo: " + line);
+        }
+
+        client.close();
+        server.close();
+    }
+}
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class HttpClientDemo {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://api.github.com/"))
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println("Status code: " + response.statusCode());
+        System.out.println("Response body:\n" + response.body());
+    }
+}
+public class SimpleClass {
+    public void greet() {
+        System.out.println("Hello");
+    }
+}
+import java.lang.reflect.Method;
+
+public class ReflectionDemo {
+    public void hello(String name) {
+        System.out.println("Hello, " + name);
+    }
+
+    public static void main(String[] args) throws Exception {
+        Class<?> clazz = Class.forName("ReflectionDemo");
+        Object instance = clazz.getDeclaredConstructor().newInstance();
+
+        Method[] methods = clazz.getDeclaredMethods();
+        for (Method method : methods) {
+            System.out.println("Method: " + method.getName());
+        }
+
+        Method helloMethod = clazz.getMethod("hello", String.class);
+        helloMethod.invoke(instance, "World");
+    }
+}
+public class VirtualThreadDemo {
+    public static void main(String[] args) throws InterruptedException {
+        for (int i = 0; i < 100_000; i++) {
+            Thread.startVirtualThread(() -> {
+                System.out.println("Hello from virtual thread!");
+            });
+        }
+        Thread.sleep(2000); // wait for threads to finish printing
+    }
+}
+import java.util.concurrent.*;
+import java.util.*;
+
+public class ExecutorCallableDemo {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+
+        List<Callable<String>> tasks = List.of(
+            () -> "Task 1 result",
+            () -> "Task 2 result",
+            () -> "Task 3 result"
+        );
+
+        List<Future<String>> results = executor.invokeAll(tasks);
+
+        for (Future<String> f : results) {
+            System.out.println(f.get());
+        }
+
+        executor.shutdown();
+    }
+}

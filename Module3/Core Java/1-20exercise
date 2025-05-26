@@ -1,0 +1,418 @@
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+import java.util.Scanner;
+
+public class SimpleCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter first number: ");
+        double num1 = scanner.nextDouble();
+
+        System.out.print("Enter second number: ");
+        double num2 = scanner.nextDouble();
+
+        System.out.println("Choose operation: +, -, *, /");
+        char op = scanner.next().charAt(0);
+
+        double result;
+
+        switch (op) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                if(num2 != 0) {
+                    result = num1 / num2;
+                } else {
+                    System.out.println("Cannot divide by zero!");
+                    scanner.close();
+                    return;
+                }
+                break;
+            default:
+                System.out.println("Invalid operation!");
+                scanner.close();
+                return;
+        }
+
+        System.out.println("Result: " + result);
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+
+public class EvenOddChecker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter an integer: ");
+        int num = scanner.nextInt();
+
+        if (num % 2 == 0) {
+            System.out.println(num + " is even.");
+        } else {
+            System.out.println(num + " is odd.");
+        }
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+
+public class LeapYearChecker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a year: ");
+        int year = scanner.nextInt();
+
+        boolean isLeap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+
+        if (isLeap) {
+            System.out.println(year + " is a leap year.");
+        } else {
+            System.out.println(year + " is NOT a leap year.");
+        }
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+
+public class MultiplicationTable {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int num = scanner.nextInt();
+
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(num + " x " + i + " = " + (num * i));
+        }
+        scanner.close();
+    }
+}
+public class DataTypeDemo {
+    public static void main(String[] args) {
+        int myInt = 42;
+        float myFloat = 3.14f;
+        double myDouble = 9.8765;
+        char myChar = 'A';
+        boolean myBool = true;
+
+        System.out.println("int: " + myInt);
+        System.out.println("float: " + myFloat);
+        System.out.println("double: " + myDouble);
+        System.out.println("char: " + myChar);
+        System.out.println("boolean: " + myBool);
+    }
+}
+public class TypeCastingExample {
+    public static void main(String[] args) {
+        double myDouble = 9.99;
+        int castedInt = (int) myDouble;  // Casting double to int
+
+        int myInt = 42;
+        double castedDouble = (double) myInt;  // Casting int to double
+
+        System.out.println("Original double: " + myDouble);
+        System.out.println("Casted to int: " + castedInt);
+        System.out.println("Original int: " + myInt);
+        System.out.println("Casted to double: " + castedDouble);
+    }
+}
+public class OperatorPrecedence {
+    public static void main(String[] args) {
+        int result = 10 + 5 * 2;  // multiplication happens before addition
+        System.out.println("Result of 10 + 5 * 2 = " + result);
+
+        int result2 = (10 + 5) * 2; // parentheses change order
+        System.out.println("Result of (10 + 5) * 2 = " + result2);
+    }
+}
+import java.util.Scanner;
+
+public class GradeCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter marks (0-100): ");
+        int marks = scanner.nextInt();
+        char grade;
+
+        if (marks >= 90) {
+            grade = 'A';
+        } else if (marks >= 80) {
+            grade = 'B';
+        } else if (marks >= 70) {
+            grade = 'C';
+        } else if (marks >= 60) {
+            grade = 'D';
+        } else {
+            grade = 'F';
+        }
+
+        System.out.println("Grade: " + grade);
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+import java.util.Random;
+
+public class NumberGuessingGame {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random rand = new Random();
+
+        int numberToGuess = rand.nextInt(100) + 1;
+        int guess = 0;
+
+        System.out.println("Guess a number between 1 and 100:");
+
+        while (guess != numberToGuess) {
+            guess = scanner.nextInt();
+
+            if (guess < numberToGuess) {
+                System.out.println("Too low! Try again:");
+            } else if (guess > numberToGuess) {
+                System.out.println("Too high! Try again:");
+            } else {
+                System.out.println("Correct! You guessed the number.");
+            }
+        }
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+
+public class FactorialCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a non-negative integer: ");
+        int num = scanner.nextInt();
+
+        if (num < 0) {
+            System.out.println("Invalid input! Number must be non-negative.");
+        } else {
+            long factorial = 1;
+            for (int i = 1; i <= num; i++) {
+                factorial *= i;
+            }
+            System.out.println("Factorial of " + num + " is " + factorial);
+        }
+        scanner.close();
+    }
+}
+public class MethodOverloading {
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    public static double add(double a, double b) {
+        return a + b;
+    }
+
+    public static int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("add(2, 3): " + add(2, 3));
+        System.out.println("add(2.5, 3.5): " + add(2.5, 3.5));
+        System.out.println("add(1, 2, 3): " + add(1, 2, 3));
+    }
+}
+import java.util.Scanner;
+
+public class RecursiveFibonacci {
+    public static int fibonacci(int n) {
+        if (n <= 1)
+            return n;
+        else
+            return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a positive integer n: ");
+        int n = scanner.nextInt();
+
+        if (n < 0) {
+            System.out.println("Invalid input! Enter positive integer.");
+        } else {
+            System.out.println("Fibonacci number at position " + n + " is " + fibonacci(n));
+        }
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+
+public class ArraySumAverage {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter number of elements: ");
+        int n = scanner.nextInt();
+
+        int[] arr = new int[n];
+
+        System.out.println("Enter " + n + " elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        int sum = 0;
+        for (int num : arr) {
+            sum += num;
+        }
+
+        double average = (n > 0) ? (double) sum / n : 0;
+
+        System.out.println("Sum: " + sum);
+        System.out.println("Average: " + average);
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+
+public class StringReversal {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        StringBuilder reversed = new StringBuilder(input).reverse();
+
+        System.out.println("Reversed string: " + reversed.toString());
+        scanner.close();
+    }
+}
+import java.util.Scanner;
+
+public class PalindromeChecker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        String cleaned = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        String reversed = new StringBuilder(cleaned).reverse().toString();
+
+        if (cleaned.equals(reversed)) {
+            System.out.println("The string is a palindrome.");
+        } else {
+            System.out.println("The string is NOT a palindrome.");
+        }
+        scanner.close();
+    }
+}
+class Car {
+    String make;
+    String model;
+    int year;
+
+    void displayDetails() {
+        System.out.println("Car Make: " + make);
+        System.out.println("Car Model: " + model);
+        System.out.println("Year: " + year);
+    }
+}
+
+public class CarDemo {
+    public static void main(String[] args) {
+        Car car1 = new Car();
+        car1.make = "Toyota";
+        car1.model = "Corolla";
+        car1.year = 2020;
+
+        Car car2 = new Car();
+        car2.make = "Honda";
+        car2.model = "Civic";
+        car2.year = 2022;
+
+        car1.displayDetails();
+        System.out.println();
+        car2.displayDetails();
+    }
+}
+class Animal {
+    void makeSound() {
+        System.out.println("Some generic animal sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("Bark");
+    }
+}
+
+public class InheritanceDemo {
+    public static void main(String[] args) {
+        Animal animal = new Animal();
+        animal.makeSound();
+
+        Dog dog = new Dog();
+        dog.makeSound();
+    }
+}
+interface Playable {
+    void play();
+}
+
+class Guitar implements Playable {
+    public void play() {
+        System.out.println("Playing the guitar");
+    }
+}
+
+class Piano implements Playable {
+    public void play() {
+        System.out.println("Playing the piano");
+    }
+}
+
+public class InterfaceDemo {
+    public static void main(String[] args) {
+        Playable guitar = new Guitar();
+        Playable piano = new Piano();
+
+        guitar.play();
+        piano.play();
+    }
+}
+import java.util.Scanner;
+
+public class TryCatchExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter numerator: ");
+        int numerator = scanner.nextInt();
+
+        System.out.print("Enter denominator: ");
+        int denominator = scanner.nextInt();
+
+        try {
+            int result = numerator / denominator;
+            System.out.println("Result: " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("Error: Division by zero is not allowed!");
+        }
+        scanner.close();
+    }
+}
