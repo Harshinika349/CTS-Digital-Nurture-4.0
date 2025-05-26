@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local Community Event Portal</title>
+
+  <!-- Internal CSS to style body background -->
+  <style>
+    /* =============================
+   Table Styling
+============================= */
+
+/* Base table styling */
+table {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table header */
+th {
+  background-color: #3498db;
+  color: white;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+
+/* Table cells */
+td {
+  background-color: #f9f9f9;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+
+/* Zebra striping for even rows */
+tr:nth-child(even) td {
+  background-color: #eaf2f8;
+}
+
+    /* =============================
+   Link Styling
+============================= */
+
+a:link {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #5a5a5a;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #e74c3c;
+}
+/* =============================
+   Navigation Menu Styling
+============================= */
+
+/* Remove bullets and style nav menu */
+.nav-menu {
+  list-style-type: none;
+  list-style-position: inside;
+  padding: 0;
+  margin: 20px 0;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Style each menu item */
+.nav-menu li {
+  padding: 10px 15px;
+  margin: 5px;
+  background-color: #f4f4f4;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.nav-menu li:hover {
+  background-color: #dcdcdc;
+}
+
+    /* =============================
+   Global Typography
+============================= */
+
+/* Use Google Font globally */
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #2c3e50;
+}
+
+/* =============================
+   Headings Styling
+============================= */
+
+/* Stylish heading */
+h1, h2, h3 {
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+/* =============================
+   Description Paragraphs
+============================= */
+
+/* Improved readability in descriptions */
+.description {
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  text-align: justify;
+  margin-bottom: 20px;
+}
+
+    /* =============================
+   Global Background Styling
+============================= */
+
+/* Apply background image with fallback color */
+body {
+  background-color: #f0f0f0; /* fallback color */
+  background-image: url('assets/city-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #333; /* default text color */
+}
+
+/* =============================
+   Text Color with HEX and RGBA
+============================= */
+
+/* General text styling with HEX */
+p {
+  color: #1a1a1a;
+}
+
+/* Lighter overlay text using RGBA for transparency */
+.overlay-text {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 6px;
+}
+
+/* =============================
+   Gradient Header Styling
+============================= */
+
+/* Style for section headers using linear gradient */
+.section-header {
+  background: linear-gradient(to right, #3498db, #2ecc71);
+  color: white;
+  padding: 15px;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 24px;
+}
+
+    /* =============================
+   Reset Styles (Universal Selector)
+============================= */
+
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =============================
+   Element Selector: Style all <h2>
+============================= */
+
+h2 {
+  font-size: 28px;
+  color: #2e86c1;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* =============================
+   ID Selector: Style the main banner heading
+============================= */
+
+#mainHeader {
+  background-color: #d5f5e3;
+  color: #145a32;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* =============================
+   Class Selector: Style event card containers
+============================= */
+
+.eventCard {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px auto;
+  width: 80%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* =============================
+   Grouping Selector: h3 and p inside eve
+
+    /* =============================
+   Layout and Reset Styles
+============================= */
+
+/* Reset default spacing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set base font */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f8ff;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* =============================
+   Header Section
+============================= */
+
+/* Style for main banner heading */
+#mainHeader {
+  font-size: 2rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* =============================
+   Event Card Styles
+============================= */
+
+/* Container for each event */
+.eventCard {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Event title */
+.eventCard h3 {
+  color: #34495e;
+  margin-bottom: 10px;
+}
+
+/* Event description */
+.eventCard p {
+  font-size: 16px;
+}
+.eventCard {
+  border: 2px dashed #ff5733;
+  padding: 25px;
+  margin: 25px auto;
+}
+
+/* =============================
+   Call to Action Button
+============================= */
+
+/* Style for main CTA button */
+.cta-button {
+  background-color: #007BFF;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+    body {
+      background-color: #f0f8ff; /* Light blue background */
+    }
+    /* ===== Header styles ===== */
+#mainHeader {
+  font-size: 24px;
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* ===== Event card styles ===== */
+.eventCard {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px auto;
+  width: 80%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* ===== Text styles ===== */
+.eventCard h3 {
+  margin-top: 0;
+  color: #34495e;
+}
+
+.eventCard p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+#hiddenExample {
+  visibility: hidden;
+  background-color: #fdd;
+  padding: 10px;
+}
+
+#noneExample {
+  display: none;
+  background-color: #dfd;
+  padding: 10px;
+}
+.news-bulletin p {
+  column-count: 2;
+  column-gap: 30px;
+  column-rule: 1px solid gray;
+  margin: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+@media (max-width: 768px) {
+  /* Stack nav menu vertically */
+  .nav-menu {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Reduce font size for smaller screens */
+  body {
+    font-size: 14px;
+  }
+
+  h1, h2, h3 {
+    font-size: 18px;
+  }
+
+  /* Responsive image sizing */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Flexible card layout */
+  .eventCard {
+    width: 90%;
+  }
+
+  /* Responsive spacing */
+  .news-bulletin p {
+    column-count: 1; /* fallback to single column on mobile */
+  }
+}
+.nav-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+
+  </style>
+
+  <!-- External CSS link -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Inline style for heading -->
+  <h1 style="color: red; text-align: center";>Welcome to the Local Community Event Portal</h1>
+
+  <h2 id="mainHeader">Upcoming Events</h2>
+  
+  <div class="eventCard">
+    <h3>Neighborhood Clean-Up</h3>
+    <p>Join us this Saturday to help clean and beautify our neighborhood park.</p>
+  </div>
+   <h1 class="section-header">City Council Sponsored Events</h1>
+
+  <div class="eventCard">
+    <h3>Farmers Market</h3>
+    <p class="overlay-text">Every Sunday at Central Square, 8 AM - 1 PM.</p>
+  </div>
+  <!-- Google Font: Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<h2>Featured Event</h2>
+
+<div class="eventCard">
+  <h3>Outdoor Movie Night</h3>
+  <p class="description">
+    Enjoy a fun evening under the stars with a family-friendly movie on the community green. Bring your blankets and snacks!
+  </p>
+</div>
+<!-- Navigation Menu -->
+<ul class="nav-menu">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Events</a></li>
+  <li><a href="#">Contact</a></li>
+</ul>
+
+<!-- Normal link example -->
+<p>Check out our <a href="https://example.com">latest event schedule</a>!</p>
+<h2 class="section-header">Event Management Table</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <body>
+    <tr>
+      <td>Community Cleanup</td>
+      <td>June 5, 2025</td>
+      <td>Riverside Park</td>
+      <td>Scheduled</td>
+    </tr>
+    <tr>
+      <td>Farmers Market</td>
+      <td>June 12, 2025</td>
+      <td>Central Plaza</td>
+      <td>Confirmed</td>
+    </tr>
+    <tr>
+      <td>Outdoor Concert</td>
+      <td>June 20, 2025</td>
+      <td>Main Square</td>
+      <td>Pending</td>
+    </tr>
+    <h2>Subscribe to Newsletter</h2>
+<form>
+  <label for="name">Name:</label>
+  <input type="text" id="name" /><br><br>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" /><br><br>
+
+  <button type="submit" class="cta-button">Subscribe</button>
+</form>
+<div style="margin-top:20px;">
+  <div id="hiddenExample">This is <strong>visibility: hidden</strong></div>
+  <div id="noneExample">This is <strong>display: none</strong></div>
+</div>
+<section class="news-bulletin">
+  <h2>Community Bulletin</h2>
+  <p>
+    The town hall is organizing a wellness camp this weekend...  
+    Volunteers are needed for the park cleanup...  
+    The public library will host a children’s storytelling session...
+  </p>
+</section>
+
+  </body>
+</table>
+</body>
+</html>

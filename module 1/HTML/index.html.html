@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset ="UTF-8">
+        <title>LCE Portal</title>
+        <style>
+          input, select, textarea, button {
+          width: 100%;
+          padding: 10px;
+          margin-top: 5px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-sizing: border-box;
+          }
+          button {
+          background-color: #28a745;
+          color: white;
+          border: none;
+          margin-top: 20px;
+          cursor: pointer;
+          }
+
+          button:hover {
+          background-color: #218838;
+          }
+          output {
+          display: block;
+          margin-top: 20px;
+          font-weight: bold;
+          color: #155724;
+          background-color: #d4edda;
+          padding: 10px;
+          border-radius: 5px;
+          }
+
+          label {
+          display: block;
+          margin-top: 15px;
+          font-weight: bold;
+          }
+          .sharp{
+          text-align: center;
+          margin-bottom: 20px;
+          }
+           form {
+          background-color: #fff;
+          padding: 20px 30px;
+          max-width: 500px;
+          margin: auto;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.1);
+          }
+  
+            .gallery-img {
+            border: 3px solid #555;
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            width: 300px;
+            transition: transform 0.3s;
+             cursor: pointer;
+            }
+           .gallery-img.enlarged{
+            transform: scale(1.5);
+            border: 2px solid #333;
+           }
+            table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            text-align: center;
+            }
+            caption {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            }
+            #welcomeBanner{
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+            #welcomeBanner:hover{
+                color: pink;
+            }
+
+            body{
+                
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+            }
+            
+            nav {
+                padding:10px;
+                margin:0;
+                overflow: none;
+                display: block;
+                background-color:orange ;
+                text-align: right;
+                word-spacing: 30px;
+                
+            }
+            a {
+            
+                overflow: none;
+                color: black;
+                text-decoration: none;
+                
+            }
+            a:hover{
+                background-color:darkorange ;
+            }
+             footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            color: white;
+        }
+        #charCount {
+        font-size: 0.9em;
+        color: green;
+        }
+        output:empty {
+        display: none;
+        }
+        </style>
+
+    </head>
+       <body>
+        <!--Navigation-->
+        <nav>
+    
+            <a href = "#home">Home</a>
+            <a href = "#events">Events</a>
+            <a href = "#contact">Contact</a>  
+            <a href="help.html" target="_blank">Help</a>
+        
+        </nav>
+        <!-- Main -->
+    <main>
+        <h1 style="text-align: center";>Welcome to the Local Community Event Portal</h1>
+    </main>
+    <h2 id="welcomeBanner" style= "background-color:blue; text-align:center;" >Welcome You All!</h2>
+    <h2 style="text-align: center;">HEY! There Is A  <span style="color: red;" >Special Offer </span></h2>
+    <table>
+    <caption title="Double tab the image to enlarged">Highlights from Recent Community Events</caption>
+    <tr>
+      <td>
+        <img src="Spring.jpg" alt="Spring Cleanup" title="Spring Cleanup " class="gallery-img" ondblclick="toggleImageSize(this)">
+        <p>Spring Cleanup</p>
+      </td>
+      <td>
+        <img src="community potluck.jpg" alt="Community Potluck" title="Community Potluck" class="gallery-img" ondblclick="toggleImageSize(this)">
+        <p>Community Potluck </p>
+      </td>
+      <td>
+        <img src="local talent.jpg" alt="Local Talent Show" title="Local Talent Show" class="gallery-img" ondblclick="toggleImageSize(this)">
+        <p>Talent Show</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img src="handcraft.jpg" alt="Handmade Craft Expo" title="Handmade Craft Expo" class="gallery-img" ondblclick="toggleImageSize(this)">
+        <p>Garage Sale</p>
+      </td>
+      <td>
+        <img src="tree.jpg" alt="Tree Planting" title="Tree Planting" class="gallery-img" ondblclick="toggleImageSize(this)">
+        <p>Tree Planting</p>
+      </td>
+      <td>
+        <img src="movie.jpg" alt=" Movie Night" title="Movie Night" class="gallery-img" ondblclick="toggleImageSize(this)">
+        <p>Movie Night</p>
+      </td>
+    </tr>
+  </table>
+  <h2 style="text-align:center;">Event Promo Video</h2>
+  <div style="text-align: center;">
+  <video width="400" controls oncanplay="showVideoMessage()" id="promoVideo" >
+  <source src="promo.mp4" type="video/mp4" >
+  Your browser does not support the video tag.
+</video>
+</div>
+<script>
+  
+  // Show message when video can play
+  function showVideoMessage() {
+    document.getElementById("videoMessage").textContent = "Video ready to play!";
+  }
+  </script>
+
+<p id="videoMessage" style="color:green; font-weight: bold; text-align:center;"></p>
+    <form onsubmit="handleSubmit(event)">
+    <h2 class="sharp">Register for a Community Event</h2>
+
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name" placeholder="Your full name" required autofocus>
+
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email" placeholder="abc@gmail.com" required>
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" placeholder="Enter phone number" onblur="validatePhone()">
+    <p id="phoneError" style="color:red;"></p>
+
+    <label for="date">Event Date</label>
+    <input type="date" id="date" name="date" required>
+
+    <label for="event">Event Type</label>
+    <select id="event" name="event"  onchange="savePreference(); showFee();" required>
+      <option value="Spring Cleanup">Spring Cleanup</option>
+      <option value="Community potluck">Community potluck</option>
+      <option value="Local Talent Show">Local Talent Show</option>
+      <option value="Handmade Craft Expo">Handmade Craft Expo</option>
+      <option value="Movie Night">Movie Night</option>
+      </select>
+      <p id="feeDisplay"></p>
+
+    <label for="message">Textarea</label>
+    <textarea id="message" name="Texta" placeholder="Feedback" rows="4"  cols="40" onkeydown="countChars()"></textarea>
+    <p id="charCount">Characters: 0</p>
+    <button type="submit">Submit Registration</button>
+    <output id="confirmation"></output>
+    <button type="button" onclick="clearPreferences()">Clear Preferences</button>
+    <button onclick="findNearbyEvents()">Find Nearby Events</button>
+    <p id="locationOutput" style="font-weight:bold; color:blue;"></p>
+  </form>
+   <script>
+    function handleSubmit(event) {
+      event.preventDefault(); 
+      const name = document.getElementById("name").value;
+      const eventType = document.getElementById("event").value;
+      const output = document.getElementById("confirmation");
+
+      output.textContent = `Thank you, ${name}, for registering for the ${eventType} event!`;
+    }
+  </script>
+
+
+<script>
+  function validatePhone() {
+    const phoneInput = document.getElementById("phone").value;
+    const phoneError = document.getElementById("phoneError");
+    const phonePattern = /^\d{10}$/;
+
+    if (!phonePattern.test(phoneInput)) {
+      phoneError.textContent = "Invalid phone number. Please enter exactly 10 digits.";
+    } else {
+      phoneError.textContent = "";
+    }
+  }
+
+  function showFee() {
+    const event = document.getElementById("event").value;
+    const feeDisplay = document.getElementById("feeDisplay");
+    let fee = "";
+    console.log("User selected: ", selectedEvent);
+    switch (event) {
+      case "Spring Cleanup":
+        fee = "Fee: ₹20";
+        break;
+      case "Community potluck":
+        fee = "Fee: ₹80";
+        break;
+      case "Local Talent Show":
+        fee = "Fee: ₹160";
+        break;
+      case "Handmade Craft Expo":
+        fee = "Fee: ₹200";
+        break;
+      case "Movie Night":
+        fee = "Fee: ₹250";
+        break;
+    }
+
+    feeDisplay.textContent = fee;
+  }
+
+  function countChars() {
+    const feedback = document.getElementById("Message").value.length;
+    document.getElementById("charCount").textContent = `Characters: ${feedback}`;
+  }
+  function toggleImageSize(clickedImage) {
+    const allImages = document.querySelectorAll('.gallery-img');
+    allImages.forEach(img => img.classList.remove('enlarged'));
+    clickedImage.classList.add('enlarged');
+    setTimeout(() => {
+    clickedImage.classList.remove('enlarged');
+  }, 3000);
+  }
+</script> 
+<script>
+   window.onbeforeunload = function () {
+    return "Are you sure?";
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+
+    
+    if (name !== "" || email !== "" || phone !== "") {
+      return "You have unsaved changes. Are you sure you want to leave?";
+    }
+  }
+</script>
+<script>
+  
+  function savePreference() {
+    const eventType = document.getElementById("event").value;
+    localStorage.setItem("preferredEvent", eventType);
+  }
+
+  
+  window.onload = function () {
+    const savedEvent = localStorage.getItem("preferredEvent");
+    if (savedEvent) {
+      document.getElementById("event").value = savedEvent;
+      showFee(); 
+    }
+  };
+  function clearPreferences() {
+    localStorage.clear();
+    sessionStorage.clear();
+    alert("Preferences cleared!");
+    location.reload(); 
+  }
+</script>
+<script>
+  function findNearbyEvents() {
+    const output = document.getElementById("locationOutput");
+
+    if (!navigator.geolocation) {
+      output.textContent = "Geolocation is not supported by your browser.";
+      return;
+    }
+
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 10000, // 10 seconds
+      maximumAge: 0   // No cached position
+    };
+
+    output.textContent = "Locating...";
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+
+    function success(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      output.textContent = `Your Location: Latitude: ${latitude}, Longitude: ${longitude}`;
+      // You can extend this to fetch nearby events based on coordinates
+    }
+
+    function error(err) {
+      switch(err.code) {
+        case err.PERMISSION_DENIED:
+          output.textContent = "Permission denied. Please allow location access.";
+          break;
+        case err.POSITION_UNAVAILABLE:
+          output.textContent = "Location unavailable.";
+          break;
+        case err.TIMEOUT:
+          output.textContent = "Location request timed out.";
+          break;
+        default:
+          output.textContent = "An unknown error occurred.";
+          break;
+      }
+    }
+  }
+</script>
+  </body>
+</html>

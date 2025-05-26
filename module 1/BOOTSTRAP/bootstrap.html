@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bootstrap 5 Exercises Demo</title>
+  
+  <!-- Bootstrap 5 CSS CDN -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Bootstrap Icons CDN -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+
+<!-- Navbar (Exercise 10.1) -->
+<nav class="navbar navbar-expand-md navbar-dark bg-primary px-3">
+  <a class="navbar-brand" href="#">MyCommunity</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+      <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+    </ul>
+    <form class="d-flex" role="search">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Search events"
+        aria-label="Search"
+      />
+      <button class="btn btn-outline-light" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<div class="container mt-4">
+
+  <!-- Responsive Grid: 3 columns (Exercise 3.1, 3.2) -->
+  <h2 class="mb-3">Upcoming Events</h2>
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-4 mb-3">
+      <div class="card shadow-sm">
+        <img src="https://picsum.photos/300/150?random=1" class="card-img-top" alt="Event 1" />
+        <div class="card-body">
+          <h5 class="card-title">Outdoor Movie Night</h5>
+          <p class="card-text">July 10, 2025</p>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 mb-3">
+      <div class="card shadow-sm">
+        <img src="https://picsum.photos/300/150?random=2" class="card-img-top" alt="Event 2" />
+        <div class="card-body">
+          <h5 class="card-title">Tech Workshop</h5>
+          <p class="card-text">August 15, 2025</p>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 mb-3">
+      <div class="card shadow-sm">
+        <img src="https://picsum.photos/300/150?random=3" class="card-img-top" alt="Event 3" />
+        <div class="card-body">
+          <h5 class="card-title">Yoga in the Park</h5>
+          <p class="card-text">July 1, 2025</p>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Two-column layout (Exercise 4.1) -->
+  <div class="row mt-5">
+    <aside class="col-md-3 p-3 bg-light rounded border">
+      <h4>Sidebar</h4>
+      <ul class="list-group">
+        <li class="list-group-item">Categories</li>
+        <li class="list-group-item">Health</li>
+        <li class="list-group-item">Technology</li>
+        <li class="list-group-item">Culture</li>
+      </ul>
+    </aside>
+
+    <main class="col-md-9">
+      <h3>Main Content Area</h3>
+      <p>This is the main content section next to the sidebar.</p>
+    </main>
+  </div>
+
+  <!-- Form (Exercise 8.1) -->
+  <div class="mt-5">
+    <h2>Register for an Event</h2>
+    <form id="registrationForm" class="row g-3 needs-validation" novalidate>
+      <div class="col-md-6">
+        <label for="nameInput" class="form-label">Name</label>
+        <input type="text" class="form-control" id="nameInput" name="name" required />
+        <div class="invalid-feedback">Please enter your name.</div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="emailInput" class="form-label">Email</label>
+        <input type="email" class="form-control" id="emailInput" name="email" required />
+        <div class="invalid-feedback">Please enter a valid email.</div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="eventSelect" class="form-label">Select Event</label>
+        <select id="eventSelect" name="event" class="form-select" required>
+          <option value="" selected disabled>Select an event</option>
+          <option value="outdoor-movie">Outdoor Movie Night</option>
+          <option value="tech-workshop">Tech Workshop</option>
+          <option value="yoga-park">Yoga in the Park</option>
+        </select>
+        <div class="invalid-feedback">Please select an event.</div>
+      </div>
+
+      <div class="col-12">
+        <button class="btn btn-success" type="submit">Submit Registration</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Popup (Exercise 18.1) -->
+<div
+  class="modal fade"
+  id="registerModal"
+  tabindex="-1"
+  aria-labelledby="registerModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="modalRegistrationForm" class="needs-validation" novalidate>
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Event Registration</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="modalName" class="form-label">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="modalName"
+              name="name"
+              required
+            />
+            <div class="invalid-feedback">Please enter your name.</div>
+          </div>
+          <div class="mb-3">
+            <label for="modalEmail" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="modalEmail"
+              name="email"
+              required
+            />
+            <div class="invalid-feedback">Please enter a valid email.</div>
+          </div>
+          <div class="mb-3">
+            <label for="modalEvent" class="form-label">Event</label>
+            <select
+              class="form-select"
+              id="modalEvent"
+              name="event"
+              required
+            >
+              <option value="" selected disabled>Select an event</option>
+              <option value="outdoor-movie">Outdoor Movie Night</option>
+              <option value="tech-workshop">Tech Workshop</option>
+              <option value="yoga-park">Yoga in the Park</option>
+            </select>
+            <div class="invalid-feedback">Please select an event.</div>
+          </div>
+          <div id="modalMessage" class="text-success"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Register</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Bundle JS (includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// Bootstrap form validation setup
+(() => {
+  'use strict';
+
+  // Registration form validation & submission handler
+  const registrationForm = document.getElementById('registrationForm');
+  registrationForm.addEventListener('submit', (event) => {
+    if (!registrationForm.checkValidity()) {
+      event.preventDefault();
+      event.stopPropagation();
+    } else {
+      event.preventDefault();
+      alert('Registration submitted successfully!');
+      registrationForm.reset();
+    }
+    registrationForm.classList.add('was-validated');
+  });
+
+  // Modal form validation and simulated submission
+  const modalForm = document.getElementById('modalRegistrationForm');
+  const modalMessage = document.getElementById('modalMessage');
+  modalForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!modalForm.checkValidity()) {
+      modalForm.classList.add('was-validated');
+      return;
+    }
+    modalMessage.textContent = 'Registering...';
+
+    // Simulate server response delay
+    setTimeout(() => {
+      modalMessage.textContent = 'Registration successful! Thank you.';
+      modalForm.reset();
+      modalForm.classList.remove('was-validated');
+    }, 1500);
+  });
+})();
+</script>
+</body>
+</html>
